@@ -2,7 +2,7 @@
 
 ## Installation
 
-This package relies on the `useAppearance` hook in `react-native-appearance` to get the system theme.
+This package relies on the `useColorScheme` hook in `react-native-appearance` to get the system theme.
 You will need to install that as well if you want to automatically switch themes based on the system
 setting.
 

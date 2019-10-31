@@ -37,7 +37,7 @@ export { createStyles }
 Use your themes:
 
 ```tsx
-// MyComponent.tsx
+// my-component.tsx
 
 import { useTheme } from "react-native-themed-styles"
 import { createStyles } from "./themes"

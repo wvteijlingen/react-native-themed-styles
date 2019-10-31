@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "tsc",
+    "build": "tsc"
   },
   "keywords": [
     "react native",
@@ -23,6 +23,8 @@
     "react-native-appearance": "^0.1.0"
   },
   "devDependencies": {
+    "@types/react-native": "^0.60.17",
+    "react-native": "0.61.2",
     "typescript": "^3.6.4"
   },
   "repository": {

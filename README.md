@@ -39,7 +39,7 @@ Use your themes:
 ```tsx
 // MyComponent.tsx
 
-import { useTheme } from "./react-native-themed-styles"
+import { useTheme } from "react-native-themed-styles"
 import { createStyles } from "./themes"
 
 const MyComponent = () => {

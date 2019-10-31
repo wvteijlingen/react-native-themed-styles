@@ -4,17 +4,23 @@
 
 This package relies on the `useColorScheme` hook in `react-native-appearance` to get the system theme.
 You will need to install that as well if you want to automatically switch themes based on the system
-setting.
+setting. Don't forget to wrap your application in an `<AppearanceProvider>` if you use `react-native-appearance`.
+
+**Using Yarn**
 
 ```
 yarn add -D react-native-themed-styles react-native-appearance
 ```
-or
+
+**Using NPM**
+
 ```
 npm install --save-dev react-native-themed-styles react-native-appearance
 ```
 
-Don't forget to wrap your application in an `<AppearanceProvider>` if you use `react-native-appearance`.
+**Using copy/paste**
+
+If you want to keep your dependencies low and don't care about upstream updates, you can also just copy the index file into your own repository.
 
 ## Usage
 

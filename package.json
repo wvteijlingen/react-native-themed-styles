@@ -1,0 +1,32 @@
+{
+  "name": "react-native-themed-styles",
+  "version": "0.0.1",
+  "description": "Dead simple theming for React Native stylesheets",
+  "author": "Ward van Teijlingen",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "/index.js",
+    "/index.d.ts"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+  },
+  "keywords": [
+    "react native",
+    "theme",
+    "theming",
+    "stylesheet"
+  ],
+  "peerDependencies": {
+    "react-native-appearance": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wvteijlingen/react-native-themed-styles.git"
+  }
+}

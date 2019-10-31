@@ -1,0 +1,14 @@
+
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react-native",
+    "strict": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "outDir": ".",
+    "declaration": true
+  },
+  "files": ["index.ts"]
+}

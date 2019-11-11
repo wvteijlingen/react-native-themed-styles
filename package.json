@@ -4,6 +4,10 @@
   "description": "Dead simple theming for React Native stylesheets",
   "author": "Ward van Teijlingen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wvteijlingen/react-native-themed-styles.git"
+  },
   "main": "index.js",
   "files": [
     "/index.js",
@@ -25,12 +29,7 @@
     "@types/react-native": "^0.60.17",
     "jasmine": "^3.5.0",
     "prettier": "1.19.1",
-    "react": "^16.11.0",
-    "react-native": "0.61.2",
+    "ts-node": "^8.5.0",
     "typescript": "^3.7.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wvteijlingen/react-native-themed-styles.git"
   }
 }

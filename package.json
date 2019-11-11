@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },
   "keywords": [
     "react native",
@@ -19,13 +20,14 @@
     "theming",
     "stylesheet"
   ],
-  "peerDependencies": {
-    "react-native-appearance": "^0.1.0"
-  },
   "devDependencies": {
+    "@types/jasmine": "^3.4.6",
     "@types/react-native": "^0.60.17",
+    "jasmine": "^3.5.0",
+    "prettier": "1.19.1",
+    "react": "^16.11.0",
     "react-native": "0.61.2",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "repository": {
     "type": "git",

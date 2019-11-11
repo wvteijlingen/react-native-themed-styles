@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "target": "esnext",
@@ -7,8 +6,8 @@
     "strict": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "outDir": ".",
-    "declaration": true
+    "declaration": true,
+    "outDir": "dist"
   },
   "files": ["index.ts"]
 }

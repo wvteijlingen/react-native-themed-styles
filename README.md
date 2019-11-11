@@ -2,11 +2,6 @@
 
 ## Installation
 
-This package relies on the `useColorScheme` hook in `react-native-appearance` to get the system theme.
-You will need to install that as well if you want to automatically switch themes based on the system
-setting.
-Don't forget to wrap your application in an `<AppearanceProvider>`if you use `react-native-appearance`.
-
 **Using Yarn**
 
 ```
@@ -34,10 +29,12 @@ Define your themes:
 import { styleCreator } from "react-native-themed-styles"
 
 const light = { backgroundColor: "white", textColor: "black" }
-const dark  = { backgroundColor: "black", textColor: "white" }
-const dusk  = { backgroundColor: "lightbrown", textColor: "darkbrown" }
+const dark = { backgroundColor: "black", textColor: "white" }
 
-const createStyles = styleCreator({ light, dark, dusk })
+const createStyles = styleCreator(
+  { light, dark }), // All themes you want to use.
+  () => "light" // A function that returns the name of the default theme.
+)
 
 export { createStyles }
 ```
@@ -70,13 +67,15 @@ const MyComponent = () => {
 }
 ```
 
-## Overriding the system theme
+## Using the system theme
 
-By default, `useTheme` uses the system theme (light or dark). You can override this by
-specifying a theme name as the second argument:
+You can use the `react-native-appearance` package to retrieve the default system theme.
+Using the `useColorScheme` hook as the second argument of `styleCreator`, it will use the system theme
+when you don't specify a theme in the `useTheme` hook.
 
 ```ts
-const [styles] = useTheme(themedStyles, "dusk")
+import { useColorScheme } from "react-native-appearance"
+const createStyles = styleCreator({ light, dark }), useColorScheme)
 ```
 
 ## Retrieving the raw theme and theme name
@@ -84,9 +83,9 @@ const [styles] = useTheme(themedStyles, "dusk")
 `useTheme` returns the following data in a tuple:
 
 ```ts
-[
-  styles,   // The styles with the theme applied.
-  theme,    // The raw theme that was applied.
+;[
+  styles, // The styles with the theme applied.
+  theme, // The raw theme that was applied.
   themeName // The name of the applied theme.
 ] = useTheme(themedStyles)
 ```

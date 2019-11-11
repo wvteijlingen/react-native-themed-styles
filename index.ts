@@ -1,28 +1,40 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
-import { useColorScheme } from "react-native-appearance"
 
-interface Theme {}
+type AppearanceProvider<T> = () => T
 
 type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
 
-export function styleCreator<N extends string, T extends Theme>(themes: Record<N, T>) {
-  return <S extends NamedStyles<S> | NamedStyles<any>>(fn: (theme: T) => S): Record<N, { theme: T, styles: S }> => {
+interface StyleSheetData<N extends string, T, S> {
+  styles: Record<N, S>
+  themes: Record<N, T>
+  appearanceProvider: AppearanceProvider<N>
+}
+
+export function styleCreator<N extends string, T, R extends N>(
+  themes: Record<N, T>,
+  appearanceProvider: AppearanceProvider<R>
+) {
+  return <S extends NamedStyles<S> | NamedStyles<any>>(
+    fn: (theme: T) => S
+  ): StyleSheetData<N, T, S> => {
     const styles: any = {}
-    for(const [name, theme] of Object.entries(themes)) {
-      styles[name] = { theme, styles: fn(theme as T) }
+    for (const [name, theme] of Object.entries(themes)) {
+      styles[name] = fn(theme as T)
     }
-    return styles
+    return { styles, themes, appearanceProvider }
   }
 }
 
-export function useTheme<T, N extends string, S extends NamedStyles<S> | NamedStyles<any>>(styles: Record<N, { theme: T, styles: S }>, name?: N): [NamedStyles<S>, T, N] {
-  const colorScheme: N = useColorScheme()
-  const themeName = name || colorScheme
-  const config = styles[themeName]
-
-  if(!config) {
-    throw new Error(`Theme not defined: ${themeName}`)
+export function useTheme<T, N extends string, S extends NamedStyles<S> | NamedStyles<any>>(
+  data: StyleSheetData<N, T, S>,
+  name?: N
+): [NamedStyles<S>, T, N] {
+  const resolvedName = name || data.appearanceProvider()
+  const theme = data.themes[resolvedName]
+  if (!theme) {
+    throw new Error(`Theme not defined: ${resolvedName}`)
   }
+  const styles = data.styles[resolvedName]
 
-  return [config.styles, config.theme, themeName]
+  return [styles, theme, resolvedName]
 }

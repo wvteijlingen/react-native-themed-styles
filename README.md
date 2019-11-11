@@ -7,13 +7,13 @@
 **Using Yarn**
 
 ```
-yarn add -D react-native-themed-styles react-native-appearance
+yarn add -D react-native-themed-styles
 ```
 
 **Using NPM**
 
 ```
-npm install --save-dev react-native-themed-styles react-native-appearance
+npm install --save-dev react-native-themed-styles
 ```
 
 **Using copy/paste**

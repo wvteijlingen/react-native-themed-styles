@@ -1,3 +1,5 @@
+![](https://github.com/wvteijlingen/react-native-themed-styles/workflows/Node%20CI/badge.svg)
+
 # react-native-themed-styles
 
 ## Installation

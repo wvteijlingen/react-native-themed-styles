@@ -42,15 +42,6 @@ Use your themes:
 import { useTheme } from "react-native-themed-styles"
 import { createStyles } from "./themes"
 
-const MyComponent = () => {
-  const [styles] = useTheme(themedStyles)
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello there</Text>
-    </View>
-  )
-}
-
 const themedStyles = createStyles(theme => ({
   container: {
     backgroundColor: theme.backgroundColor,
@@ -60,6 +51,15 @@ const themedStyles = createStyles(theme => ({
     color: theme.textColor
   }
 }))
+
+const MyComponent = () => {
+  const [styles] = useTheme(themedStyles)
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello there</Text>
+    </View>
+  )
+}
 ```
 
 ## Overriding the system theme

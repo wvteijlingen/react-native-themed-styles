@@ -31,5 +31,12 @@
     "prettier": "1.19.1",
     "ts-node": "^8.5.0",
     "typescript": "^3.7.2"
+  },
+  "prettier": {
+    "printWidth": 103,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": false
   }
 }

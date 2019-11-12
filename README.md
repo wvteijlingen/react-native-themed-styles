@@ -2,6 +2,15 @@
 
 # react-native-themed-styles
 
+A small package that allows you to create custom UI themes and use them throughout your app with a useTheme hook.
+
+It does not impose any structure on your theme, which means you can use it not only for light/dark mode, but also for spacing, fonts or whatever you dream up.
+
+- No dependencies
+- Simple and clear API
+- Fully typed
+- No new concepts to learn, it builds on StyleSheets and hooks
+
 ## Installation
 
 **Using Yarn**

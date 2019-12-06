@@ -58,8 +58,6 @@ Use your themes:
 import { useTheme } from "react-native-themed-styles"
 import { createStyles } from "./themes"
 
-// Create a themed StyleSheet by using the `createStyles` function that you
-// exported from themes.ts.
 const themedStyles = createStyles(theme => ({
   container: {
     backgroundColor: theme.backgroundColor,
@@ -71,7 +69,6 @@ const themedStyles = createStyles(theme => ({
 }))
 
 const MyComponent = () => {
-  // Retrieve the computed styles with a theme applied using the useTheme hook.
   const [styles] = useTheme(themedStyles)
 
   return (
@@ -104,24 +101,41 @@ Use this function to register your themes. This will return an anonymous functio
 
 **Parameters**
 
-- `themes`: An object containing all your themes, keyed by name.
-- `appearanceProvider`: A function that returns the name of the default theme. If you want your app to match the OS theme, you can query the OS in this function and return the appropriate theme name,
+- `themes`: An object containing all your themes, keyed by name. All themes must have the same data structure.
+- `appearanceProvider`: A function that returns the name of the default theme.
 
 **Returns**
 
 ```
-function createStyles(stylesheetBuilder)
+ThemedStyleSheetCreator
 ```
+
+---
+
+### Function: `ThemedStyleSheetCreator`
 
 A function that you can use to create a themed StyleSheet.
 
-### Function: `useTheme(themedStyles, themeName)`
+**Parameters**
 
-Use this function to retrieve component styles with a theme applied.
+- `callback`: A callback from which you must return an object of styles, as you would when using `StyleSheet.create`. You can access the `theme`
+  argument to access your theme data.
+
+**Returns**
+
+```
+ThemedStyleSheet
+```
+
+---
+
+### Function: `useTheme(themedStyleSheet[, themeName])`
+
+Use this function to apply a theme and retrieve computed component styles.
 
 **Parameters**
 
-- `themedStyles`: A themed StyleSheet as returned from the `createStyles` function.
+- `themedStyleSheet`: A `ThemedStyleSheet` as returned from the `createStyles` function.
 - `themeName`: Optional string defining which theme to apply. If not passed, it applies the theme returned by the `appearanceProvider` that you passed to the `styleCreator` function.
 
 **Returns**

@@ -82,9 +82,7 @@ const MyComponent = () => {
 ## Mirroring the OS theme
 
 You most likely want your app to automatically switch themes based on the OS theme, i.e. dark or light mode.
-You can easily implement this using the `react-native-appearance` package.
-
-Passing its `useColorScheme` hook as the second argument of `styleCreator`, it will use the OS theme by default.
+You can easily implement this with the `react-native-appearance` package, by using its `useColorScheme` hook in the second argument of `styleCreator`:
 
 ```ts
 import { useColorScheme } from "react-native-appearance"

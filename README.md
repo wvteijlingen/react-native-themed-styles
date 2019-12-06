@@ -43,7 +43,7 @@ const light = { backgroundColor: "white", textColor: "black" }
 const dark = { backgroundColor: "black", textColor: "white" }
 
 const createStyles = styleCreator(
-  { light, dark }), // All themes you want to use.
+  { light, dark }, // All themes you want to use.
   () => "light" // A function that returns the name of the default theme.
 )
 
@@ -58,6 +58,8 @@ Use your themes:
 import { useTheme } from "react-native-themed-styles"
 import { createStyles } from "./themes"
 
+// Create a themed StyleSheet by using the `createStyles` function that you
+// exported from themes.ts.
 const themedStyles = createStyles(theme => ({
   container: {
     backgroundColor: theme.backgroundColor,
@@ -69,7 +71,9 @@ const themedStyles = createStyles(theme => ({
 }))
 
 const MyComponent = () => {
+  // Retrieve the computed styles with a theme applied using the useTheme hook.
   const [styles] = useTheme(themedStyles)
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Hello there</Text>
@@ -78,25 +82,56 @@ const MyComponent = () => {
 }
 ```
 
-## Using the system theme
+## Mirroring the OS theme
 
-You can use the `react-native-appearance` package to retrieve the default system theme.
-Using the `useColorScheme` hook as the second argument of `styleCreator`, it will use the system theme
-when you don't specify a theme in the `useTheme` hook.
+You most likely want your app to automatically switch themes based on the OS theme, i.e. dark or light mode.
+You can easily implement this using the `react-native-appearance` package.
+
+Passing its `useColorScheme` hook as the second argument of `styleCreator`, it will use the OS theme by default.
 
 ```ts
 import { useColorScheme } from "react-native-appearance"
+import { styleCreator } from "react-native-themed-styles"
+
 const createStyles = styleCreator({ light, dark }), useColorScheme)
 ```
 
-## Retrieving the raw theme and theme name
+## API
 
-`useTheme` returns the following data in a tuple:
+### Function: `styleCreator(themes, appearanceProvider)`
 
-```ts
-;[
-  styles, // The styles with the theme applied.
-  theme, // The raw theme that was applied.
-  themeName // The name of the applied theme.
-] = useTheme(themedStyles)
+Use this function to register your themes. This will return an anonymous function that you can use to create a themed StyleSheet.
+
+**Parameters**
+
+- `themes`: An object containing all your themes, keyed by name.
+- `appearanceProvider`: A function that returns the name of the default theme. If you want your app to match the OS theme, you can query the OS in this function and return the appropriate theme name,
+
+**Returns**
+
 ```
+function createStyles(stylesheetBuilder)
+```
+
+A function that you can use to create a themed StyleSheet.
+
+### Function: `useTheme(themedStyles, themeName)`
+
+Use this function to retrieve component styles with a theme applied.
+
+**Parameters**
+
+- `themedStyles`: A themed StyleSheet as returned from the `createStyles` function.
+- `themeName`: Optional string defining which theme to apply. If not passed, it applies the theme returned by the `appearanceProvider` that you passed to the `styleCreator` function.
+
+**Returns**
+
+```
+[styles, theme, themeName]
+```
+
+A tuple containing the following entries:
+
+- `styles`: The styles with the theme applied
+- `theme`: The raw theme that was applied.
+- `themeName`: The name of the applied theme.

@@ -90,7 +90,10 @@ Passing its `useColorScheme` hook as the second argument of `styleCreator`, it w
 import { useColorScheme } from "react-native-appearance"
 import { styleCreator } from "react-native-themed-styles"
 
-const createStyles = styleCreator({ light, dark }), useColorScheme)
+const createStyles = styleCreator({ light, dark }, () => {
+  const colorScheme = useColorScheme()
+  return ["light", "dark"].includes(colorScheme) ? colorScheme : "light"
+})
 ```
 
 ## API

@@ -1,6 +1,6 @@
 {
   "name": "react-native-themed-styles",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Dead simple theming for React Native stylesheets",
   "author": "Ward van Teijlingen",
   "license": "MIT",
@@ -10,11 +10,12 @@
   },
   "main": "index.js",
   "files": [
-    "/index.js",
-    "/index.d.ts"
+    "index.js",
+    "index.ts",
+    "index.d.ts"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepublish": "npm run build",
     "build": "tsc",
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },

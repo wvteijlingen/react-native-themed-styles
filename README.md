@@ -37,17 +37,17 @@ Define your themes:
 ```ts
 // themes.ts
 
-import { styleCreator } from "react-native-themed-styles"
+import { registerThemes } from "react-native-themed-styles"
 
 const light = { backgroundColor: "white", textColor: "black" }
 const dark = { backgroundColor: "black", textColor: "white" }
 
-const createStyles = styleCreator(
+const styleSheetFactory = registerThemes(
   { light, dark }, // All themes you want to use.
   () => "light" // A function that returns the name of the default theme.
 )
 
-export { createStyles }
+export { styleSheetFactory }
 ```
 
 Use your themes:
@@ -56,9 +56,9 @@ Use your themes:
 // my-component.tsx
 
 import { useTheme } from "react-native-themed-styles"
-import { createStyles } from "./themes"
+import { styleSheetFactory } from "./themes"
 
-const themedStyles = createStyles(theme => ({
+const themedStyles = styleSheetFactory(theme => ({
   container: {
     backgroundColor: theme.backgroundColor,
     flex: 1
@@ -82,13 +82,13 @@ const MyComponent = () => {
 ## Mirroring the OS theme
 
 You most likely want your app to automatically switch themes based on the OS theme, i.e. dark or light mode.
-You can easily implement this with the `react-native-appearance` package, by using its `useColorScheme` hook in the second argument of `styleCreator`:
+You can easily implement this with the `react-native-appearance` package, by using its `useColorScheme` hook in the second argument of `registerThemes`:
 
 ```ts
 import { useColorScheme } from "react-native-appearance"
-import { styleCreator } from "react-native-themed-styles"
+import { registerThemes } from "react-native-themed-styles"
 
-const createStyles = styleCreator({ light, dark }, () => {
+const styleSheetFactory = registerThemes({ light, dark }, () => {
   const colorScheme = useColorScheme()
   return ["light", "dark"].includes(colorScheme) ? colorScheme : "light"
 })
@@ -96,9 +96,9 @@ const createStyles = styleCreator({ light, dark }, () => {
 
 ## API
 
-### Function: `styleCreator(themes, appearanceProvider)`
+### Function: `registerThemes(themes, appearanceProvider)`
 
-Use this function to register your themes. This will return an anonymous function that you can use to create a themed StyleSheet.
+Use this function to register your themes. This will return a factory function that you can use to create a themed StyleSheet.
 
 **Parameters**
 
@@ -137,7 +137,7 @@ Use this function to apply a theme and retrieve computed component styles.
 **Parameters**
 
 - `themedStyleSheet`: A `ThemedStyleSheet` as returned from the `createStyles` function.
-- `themeName`: Optional string defining which theme to apply. If not passed, it applies the theme returned by the `appearanceProvider` that you passed to the `styleCreator` function.
+- `themeName`: Optional string defining which theme to apply. If not passed, it applies the theme returned by the `appearanceProvider` that you passed to the `registerThemes` function.
 
 **Returns**
 

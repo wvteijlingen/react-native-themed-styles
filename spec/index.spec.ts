@@ -1,11 +1,11 @@
-import { styleCreator, useTheme } from ".."
+import { registerThemes, useTheme } from ".."
 
 const lightTheme = { backgroundColor: "white" }
 const darkTheme = { backgroundColor: "black" }
 
-const createStyles = styleCreator({ light: lightTheme, dark: darkTheme }, () => "light")
+const styleSheetFactory = registerThemes({ light: lightTheme, dark: darkTheme }, () => "light")
 
-const themedStyles = createStyles(theme => ({
+const themedStyles = styleSheetFactory(theme => ({
   container: {
     backgroundColor: theme.backgroundColor
   }

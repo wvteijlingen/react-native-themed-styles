@@ -10,7 +10,7 @@ interface StyleSheetData<N extends string, T, S> {
   appearanceProvider: AppearanceProvider<N>
 }
 
-export function styleCreator<N extends string, T, R extends N>(
+export function registerThemes<N extends string, T, R extends N>(
   themes: Record<N, T>,
   appearanceProvider: AppearanceProvider<R>
 ) {
